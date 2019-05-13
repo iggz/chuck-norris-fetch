@@ -7,10 +7,21 @@ getMoreQuotesButton.addEventListener('click', function(e){
 });
 
 function updateChuckSays() {
-    const chuckSays = document.getElementById('chuckSays');
-    
+    // const chuckSays = document.getElementById('chuckSays');
+    const chuckQuotes = document.getElementById('chuckQuotes');
     get('https://api.chucknorris.io/jokes/random?category=dev')
     .then((response) => {
-        chuckSays.innerHTML = response;
+        // This used to update paragraph, but we're not doing that anymore
+        // chuckSays.innerHTML = response;
+        addItem(response);
     });
+}
+
+
+function addItem(item) {
+    const chuckQuotes = document.getElementById('chuckQuotes');
+    const theQuoteItem = document.createElement('li');
+    theQuoteItem.textContent = item;
+    chuckQuotes.append(theQuoteItem);
+
 }
